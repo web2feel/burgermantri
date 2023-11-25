@@ -1,8 +1,8 @@
-const Nav = ({ handleSidebar }) => {
+const Nav = ({ handleSidebar, count }) => {
   return (
     <nav className="menu">
       <div onClick={handleSidebar} className="menuItem cartOpen">
-        Cart
+        Cart - {count}
       </div>
     </nav>
   );
