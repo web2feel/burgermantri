@@ -1,6 +1,6 @@
 import Nav from "./Nav";
 
-const Header = ({handleSidebar, count}) => {
+const Header = () => {
   return (
     <header id="headerSection">
       <div className="container">
@@ -8,7 +8,7 @@ const Header = ({handleSidebar, count}) => {
           <div className="logo">
             <h2>BurgerMantri</h2>
           </div>
-          <Nav handleSidebar={handleSidebar} count={count} />
+          <Nav />
         </div>
       </div>
     </header>

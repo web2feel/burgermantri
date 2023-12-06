@@ -1,7 +1,7 @@
 import { burgers } from "../../data";
 import ProductGridItem from "./ProductGridItem";
 
-const ProductGrid = ({ addCartItem, cart }) => {
+const ProductGrid = () => {
   return (
     <main>
       <div className="container">
@@ -11,8 +11,6 @@ const ProductGrid = ({ addCartItem, cart }) => {
               <ProductGridItem
                 key={burger.id}
                 data={burger}
-                addCartItem={addCartItem}
-                cart={cart}
               />
             );
           })}
