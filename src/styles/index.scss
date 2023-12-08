@@ -101,6 +101,14 @@ nav.menu {
   gap: 20px;
   .menuItem {
     cursor: pointer;
+    color: $title_text;
+    font-weight: bold;
+  }
+  .active {
+    color: $primary;
+  }
+  a {
+    text-decoration: none;
   }
 }
 
@@ -175,6 +183,27 @@ nav.menu {
   }
 }
 
+//Cart Page styles
+
+.cartPage {
+  margin: 60px 0px;
+}
+
+.cartPageTitle {
+  margin-bottom: 30px;
+}
+.cartList {
+  border: 1px solid #ddd;
+}
+.cartFooter {
+  display: flex;
+  justify-content: space-between;
+  background-color: $alt_bg;
+}
+.totalInfo {
+  font-weight: bold;
+  color: $title_text;
+}
 // Sidebar
 
 #sidebar {
