@@ -2,6 +2,7 @@ import { FaStar } from "react-icons/fa";
 import { USDformat } from "../utils/format";
 import { useContext } from "react";
 import { AppContext } from "../context/context";
+import { Link } from "react-router-dom";
 
 const ProductGridItem = ({ data }) => {
   const { state, dispatch } = useContext(AppContext);
@@ -14,7 +15,7 @@ const ProductGridItem = ({ data }) => {
     if (itemInCart > -1) {
       dispatch({
         type: "CHANGE_QUANTITY",
-        payload: {id, num:1},
+        payload: { id, num: 1 },
       });
     } else {
       dispatch({
@@ -28,7 +29,9 @@ const ProductGridItem = ({ data }) => {
     <div className="productGridItem">
       <img src={image} alt="" />
       <div className="itemContent">
-        <h2>{title}</h2>
+        <Link to={`/burger/${id}`}>
+            <h2>{title}</h2>
+        </Link>
         <p className="rating">
           <FaStar color="#F59E0B" />
           <span>{rating}</span>

@@ -3,13 +3,20 @@ import { reducer, initState } from "../reducer/reducer.js";
 export const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initState);
+  let storedState = JSON.parse(localStorage.getItem("burgerState"));
+  let initialState = storedState || initState;
+
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     dispatch({
       type: "UPDATE_COUNT_TOTAL",
     });
   }, [state.cart]);
+
+  useEffect(() => {
+    localStorage.setItem("burgerState",JSON.stringify(state));
+  }, [state]);
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>

@@ -1,5 +1,4 @@
 export const initState = {
-  showSidebar: false,
   cart: [],
   count: 0,
   total: 0,

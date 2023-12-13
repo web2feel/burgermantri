@@ -1,19 +1,8 @@
-// import { burgers } from "../../data";
+import { useLoaderData } from "react-router-dom";
 import ProductGridItem from "./ProductGridItem";
-import { useEffect, useState } from "react";
 
 const ProductGrid = () => {
-  const [burgers, setBurgers] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      let res = await fetch("https://burgermantri.onrender.com/data");
-      let data = await res.json();
-      setBurgers(data);
-    };
-    fetchData();
-  }, []);
-
+  const burgers = useLoaderData();
   return (
     <main>
       <div className="container">
