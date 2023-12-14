@@ -1,11 +1,14 @@
+import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
-import About from "./pages/About";
+// import About from "./pages/About";
 import Home, { productsLoader } from "./pages/Home";
 import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
 import Product, { productLoader } from "./pages/Product";
+import Loading from "./components/Loading";
 
+const About = lazy(() => import("./pages/About"));
 
 const router = createBrowserRouter([
   {
@@ -24,13 +27,17 @@ const router = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <About />
+          </Suspense>
+        ),
       },
       {
         path: "/burger/:ID",
         element: <Product />,
         loader: productLoader,
-      }
+      },
     ],
   },
 ]);

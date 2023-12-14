@@ -1,11 +1,11 @@
 import React from "react";
-import { useContext } from "react";
-import { AppContext } from "../context/context";
+// import { useContext } from "react";
+// import { AppContext } from "../context/context";
 import CartItem from "../components/CartItem";
 import { USDformat } from "../utils/format";
+import { useSelector } from "react-redux";
 const Cart = () => {
-  const { state } = useContext(AppContext);
-  console.log(state);
+  const state = useSelector((state) => state.cart);
   return (
     <div id="cartSection">
       <div className="container">

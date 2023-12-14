@@ -1,16 +1,15 @@
 import { USDformat } from "../utils/format";
 import { FaSquarePlus, FaSquareMinus } from "react-icons/fa6";
-import { useContext } from "react";
-import { AppContext } from "../context/context";
+import { useDispatch } from "react-redux";
+import { updateQuantity, deleteProduct } from "../store/slices/cart";
 
 const CartItem = ({ data }) => {
   const { title, image, price, quantity, id } = data;
-
-  const {dispatch } = useContext(AppContext);
+  const dispatch = useDispatch();
 
   const handleDecrease = (id) => {
     if (quantity > 1) {
-      dispatch({ type: "CHANGE_QUANTITY", payload: { id, num: -1 } });
+      dispatch(updateQuantity({ id, num: -1 }));
     }
   };
   return (
@@ -24,18 +23,14 @@ const CartItem = ({ data }) => {
             <FaSquareMinus size={18} />
           </span>
           <span> {quantity} </span>
-          <span
-            onClick={() =>
-              dispatch({ type: "CHANGE_QUANTITY", payload: { id, num: 1 } })
-            }
-          >
+          <span onClick={() => dispatch(updateQuantity({ id, num: 1 }))}>
             <FaSquarePlus size={18} />
           </span>
         </div>
       </div>
 
       <div
-        onClick={() => dispatch({ type: "DELETE_ITEM", payload: id })}
+        onClick={() => dispatch(deleteProduct(id))}
         style={{ marginLeft: "auto" }}
       >
         <img

@@ -1,29 +1,23 @@
-import React, { useContext } from "react";
 import { FaStar } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
 import { USDformat } from "../utils/format";
-import { AppContext } from "../context/context";
-
+import { useSelector, useDispatch } from "react-redux";
+import { updateQuantity, addToCart } from "../store/slices/cart";
 const Product = () => {
   const data = useLoaderData();
 
   const { id, title, image, description, price, reviews, rating } = data;
 
-  const { state, dispatch } = useContext(AppContext);
+  const state = useSelector(state => state.cart)
+  const dispatch = useDispatch()
 
   const itemInCart = state.cart.findIndex((item) => item.id === id);
 
   const addCartItem = (productObject) => {
     if (itemInCart > -1) {
-      dispatch({
-        type: "CHANGE_QUANTITY",
-        payload: { id, num: 1 },
-      });
+      dispatch(updateQuantity({ id, num: 1 }));
     } else {
-      dispatch({
-        type: "ADD_TO_CART",
-        payload: { ...productObject, quantity: 1 },
-      });
+      dispatch(addToCart({ ...productObject, quantity: 1 }));
     }
   };
 

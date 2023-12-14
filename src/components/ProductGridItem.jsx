@@ -1,11 +1,12 @@
 import { FaStar } from "react-icons/fa";
 import { USDformat } from "../utils/format";
-import { useContext } from "react";
-import { AppContext } from "../context/context";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { addToCart, updateQuantity } from "../store/slices/cart";
 
 const ProductGridItem = ({ data }) => {
-  const { state, dispatch } = useContext(AppContext);
+  const state = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
   const { id, image, title, description, rating, price, reviews } = data;
 
@@ -13,15 +14,9 @@ const ProductGridItem = ({ data }) => {
 
   const addCartItem = (productObject) => {
     if (itemInCart > -1) {
-      dispatch({
-        type: "CHANGE_QUANTITY",
-        payload: { id, num: 1 },
-      });
+      dispatch(updateQuantity({ id, num: 1 }));
     } else {
-      dispatch({
-        type: "ADD_TO_CART",
-        payload: { ...productObject, quantity: 1 },
-      });
+      dispatch(addToCart({ ...productObject, quantity: 1 }));
     }
   };
 
@@ -30,7 +25,7 @@ const ProductGridItem = ({ data }) => {
       <img src={image} alt="" />
       <div className="itemContent">
         <Link to={`/burger/${id}`}>
-            <h2>{title}</h2>
+          <h2>{title}</h2>
         </Link>
         <p className="rating">
           <FaStar color="#F59E0B" />
